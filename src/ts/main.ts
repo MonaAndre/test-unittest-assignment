@@ -1,5 +1,5 @@
 import "./../styles/main.scss";
-import { addTodo, changeTodo, removeAllTodos } from "./functions";
+import { addTodo, changeTodo, displayError, removeAllTodos } from "./functions";
 import { Todo } from "./models/todo";
 
 let todos: Todo[] = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -21,7 +21,7 @@ document.getElementById("clearTodos")?.addEventListener("click", () => {
   }
 );
 
-function createNewTodo(todoText: string, todos: Todo[]) {
+export function createNewTodo(todoText: string, todos: Todo[]) {
   let result = addTodo(todoText, todos);
 
   if (result.success) {
@@ -31,7 +31,7 @@ function createNewTodo(todoText: string, todos: Todo[]) {
   }
 }
 
-function createHtml(todos: Todo[]) {
+export function createHtml(todos: Todo[]) {
   localStorage.setItem("todos", JSON.stringify(todos));
 
   let todosContainer: HTMLUListElement = document.getElementById(
@@ -62,19 +62,19 @@ function toggleTodo(todo: Todo) {
   createHtml(todos);
 }
 
-function displayError(error: string, show: boolean) {
-  let errorContainer: HTMLDivElement = document.getElementById(
-    "error"
-  ) as HTMLDivElement;
+// export function displayError(error: string, show: boolean) {
+//   let errorContainer: HTMLDivElement = document.getElementById(
+//     "error"
+//   ) as HTMLDivElement;
 
-  errorContainer.innerHTML = error;
+//   errorContainer.innerHTML = error;
 
-  if (show) {
-    errorContainer.classList.add("show");
-  } else {
-    errorContainer.classList.remove("show");
-  }
-}
+//   if (show) {
+//     errorContainer.classList.add("show");
+//   } else {
+//     errorContainer.classList.remove("show");
+//   }
+// }
 
 function clearTodos(todos: Todo[]) {
   removeAllTodos(todos);
@@ -82,3 +82,8 @@ function clearTodos(todos: Todo[]) {
 }
 
 createHtml(todos);
+
+export const add =( x:number, y:number)=>{
+  return x+y;
+  };
+  

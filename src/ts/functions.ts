@@ -18,3 +18,17 @@ export function changeTodo(todo: Todo) {
 export function removeAllTodos(todos: Todo[]) {
   todos.splice(0, todos.length);
 }
+
+export function displayError(error: string, show: boolean) {
+  let errorContainer: HTMLDivElement = document.getElementById(
+    "error"
+  ) as HTMLDivElement;
+
+  errorContainer.innerHTML = error;
+
+  if (show) {
+    errorContainer.classList.add("show");
+  } else {
+    errorContainer.classList.remove("show");
+  }
+}
